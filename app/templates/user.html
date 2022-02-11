@@ -1,19 +1,20 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-    {% if form %}
-        <form action="" method="post" class="form" role="form">
-            {{ form.csrf_token() }}
-            <d1>
-                {{ wtf.form_field(form.date_played, class='form-control', placeholder='Enter a date') }}
-                {{ wtf.form_field(form.score, class='form-control', placeholder='Enter a score') }}
-            </d1>
-            <p><input type=submit class="btn btn-warning btn-block"></p>
-        </form>
-    {% endif %}
-    <br><br>
+    <table class="table table-hover">
+        <tr>
+            <td width="256px"><img src="{{ user.avatar(256) }}"></td>
+            <td>
+                <h1>User: {{ user.username }}</h1>
+                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+                {% if user.last_seen %}<p>Last seen on: {{ moment(user.last_seen).format('LLL') }}</p>{% endif %}
+                <p>{{ user.games_played.count() }} games played!</p>
+                {% if user == current_user %}
+                <p><a href="{{ url_for('main.edit_profile') }}">Edit your profile</a></p>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
     {% for game in games %}
         {% include '_game.html' %}
     {% endfor %}

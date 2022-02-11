@@ -1,0 +1,126 @@
+2022-02-11 04:52:50,921 ERROR: Exception on /index [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 30, in index
+    games = current_user.games_played().paginate(page, current_app.config['GAMES_PER_PAGE'], False)
+TypeError: 'AppenderBaseQuery' object is not callable
+2022-02-11 04:55:33,723 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 04:55:36,120 ERROR: Exception on /index [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 33, in index
+    return render_template('index.html', title='Home', form=form,
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 148, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1068, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 997, in get_template
+    return self._load_template(name, globals)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 958, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 757, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/index.html", line 5, in template
+    <h1>{{ 'Hi, %(username)s!', username=current_user.username }}</h1>
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2022-02-11 05:03:07,041 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:03:10,071 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:03:12,633 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:03:20,740 ERROR: Exception on /index [POST] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1702, in _execute_context
+    context = constructor(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 1070, in _init_compiled
+    param = [
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 1071, in <listcomp>
+    processors[key](compiled_params[key])
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1003, in process
+    raise TypeError(
+TypeError: SQLite DateTime type only accepts Python datetime and date objects as input.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 26, in index
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 244, in save_obj
+    _emit_insert_statements(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1221, in _emit_insert_statements
+    result = connection._execute_20(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1708, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1702, in _execute_context
+    context = constructor(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 1070, in _init_compiled
+    param = [
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 1071, in <listcomp>
+    processors[key](compiled_params[key])
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/dialects/sqlite/base.py", line 1003, in process
+    raise TypeError(
+sqlalchemy.exc.StatementError: (builtins.TypeError) SQLite DateTime type only accepts Python datetime and date objects as input.
+[SQL: INSERT INTO game (score, timestamp, user_id) VALUES (?, ?, ?)]
+[parameters: [{'timestamp': '20', 'user_id': 1, 'score': None}]]
+2022-02-11 05:09:58,130 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]

@@ -1,0 +1,110 @@
+2022-02-11 06:30:26,556 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 45, in explore
+    return render_template('index.html', title='Explore',
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jake/ShotStar/app/templates/base.html", line 48, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/home/jake/ShotStar/app/templates/index.html", line 11, in block 'app_content'
+    {% include '_game.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/_game.html", line 15, in template
+    username=user_link, when=moment(game.timestamp).fromNow() }}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2022-02-11 06:31:45,354 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 45, in explore
+    return render_template('index.html', title='Explore',
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jake/ShotStar/app/templates/base.html", line 48, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/home/jake/ShotStar/app/templates/index.html", line 11, in block 'app_content'
+    {% include '_game.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/_game.html", line 15, in template
+    username=user_link, when=moment(game.timestamp).fromNow() }}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2022-02-11 06:35:35,495 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 06:36:49,134 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 06:38:37,551 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 06:41:58,504 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 06:46:49,263 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 06:49:46,647 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 06:54:19,439 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:04:21,444 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:04:25,209 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 55, in user
+    games = user.games_played.order_by(Game.datetime.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'],
+AttributeError: type object 'Game' has no attribute 'datetime'
+2022-02-11 07:04:45,817 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]

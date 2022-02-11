@@ -1,0 +1,73 @@
+2022-02-11 07:32:05,247 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
+    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
+    return self._iter().all()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
+    return self._allrows()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
+    rows = self._fetchall_impl()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
+    return self._real_result._fetchall_impl()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
+    return list(self.iterator)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
+    fetch = cursor._raw_all_rows()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
+    return [make_row(row) for row in rows]
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
+    return [make_row(row) for row in rows]
+ValueError: Couldn't parse datetime string: '2022-01-01'
+2022-02-11 07:32:18,448 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:33:07,864 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:33:10,315 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
+    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
+    return self._iter().all()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
+    return self._allrows()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
+    rows = self._fetchall_impl()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
+    return self._real_result._fetchall_impl()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
+    return list(self.iterator)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
+    fetch = cursor._raw_all_rows()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
+    return [make_row(row) for row in rows]
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
+    return [make_row(row) for row in rows]
+ValueError: Couldn't parse datetime string: '2022-01-01'
+2022-02-11 07:34:50,977 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:38:37,797 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:38:48,105 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:38:51,723 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 07:40:13,159 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]

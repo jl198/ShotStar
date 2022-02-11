@@ -1,0 +1,21 @@
+<table class="table table-hover">
+    <tr>
+        <td width="70px">
+            <a href="{{ url_for('main.user', username=game.owner.username) }}">
+                <img src="{{ game.owner.avatar(70) }}"/>
+            </a>
+        </td>
+        <td>
+            {% set user_link %}
+                <span class="user_popup">
+                    <a href="{{ url_for('main.user', username=game.owner.username) }}">
+                        {{ game.owner.username }}
+                    </a>
+                </span>
+            {% endset %}
+            {{ user_link }}s scored a game {{ moment(game.timestamp).fromNow() }}s
+            <br>
+            <span id="game{{ game.id }}">{{ game.score }}</span>
+        </td>
+    </tr>
+</table>

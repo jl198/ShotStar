@@ -1,0 +1,122 @@
+2022-02-11 05:10:02,019 ERROR: Exception on /index [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: game.date_played
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 30, in index
+    games = current_user.games_played.paginate(page, current_app.config['GAMES_PER_PAGE'], False)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
+    return self._iter().all()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2894, in _iter
+    result = self.session.execute(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1692, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: game.date_played
+[SQL: SELECT game.id AS game_id, game.score AS game_score, game.date_played AS game_date_played, game.user_id AS game_user_id 
+FROM game 
+WHERE ? = game.user_id
+ LIMIT ? OFFSET ?]
+[parameters: (1, 25, 0)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-11 05:11:58,959 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:12:04,621 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:13:15,835 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:13:48,712 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:08,440 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:10,756 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:23,096 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:24,909 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:26,426 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:27,668 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:14:30,988 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:15:02,204 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:15:33,839 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:15:39,214 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:15:45,185 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:29:02,771 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:29:05,416 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:34:38,007 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:34:41,081 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:34:57,890 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:35:01,211 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:35:04,616 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:41:42,831 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:41:50,230 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:41:54,751 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:42:00,638 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:43:16,107 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:43:31,747 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:43:37,835 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:43:45,172 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:44:58,780 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:45:47,426 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:46:05,641 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:47:06,534 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:47:13,526 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:47:27,082 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:48:53,393 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:48:59,927 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:49:08,830 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:49:59,741 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:51:44,184 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:51:59,851 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:52:03,754 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:52:27,903 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:52:38,819 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:52:51,268 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:56:05,043 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 05:57:55,897 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 06:01:39,606 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 06:01:46,251 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 06:01:53,622 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 06:02:03,334 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
+2022-02-11 06:02:18,370 ERROR: Exception on /index [POST] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jake/ShotStar/app/main/routes.py", line 24, in index
+    game = Game(timestamp=form.game.data, owner=current_user)
+AttributeError: 'GameForm' object has no attribute 'game'
+2022-02-11 06:07:19,564 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
