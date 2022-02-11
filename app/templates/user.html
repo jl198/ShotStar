@@ -8,25 +8,43 @@
                 <h1>User: {{ user.username }}</h1>
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
                 {% if user.last_seen %}<p>Last seen on: {{ moment(user.last_seen).format('LLL') }}</p>{% endif %}
-                <p>{{ user.games_played.count() }} games played!</p>
+                <p>{{ user.games_played.count() + user.scored_games_played.count() }} games played!</p>
                 {% if user == current_user %}
                 <p><a href="{{ url_for('main.edit_profile') }}">Edit your profile</a></p>
                 {% endif %}
             </td>
         </tr>
     </table>
+    {% for scored_game in scored_games %}
+        {% include '_scored_game.html' %}
+    {% endfor %}
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not scored_games_prev_url %} disabled{% endif %}">
+                <a href="{{ scored_games_prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Newer games
+                </a>
+            </li>
+            <li class="next{% if not scored_games_next_url %} disabled{% endif %}">
+                <a href="{{ scored_games_next_url or '#' }}">
+                    Older games <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <br>
     {% for game in games %}
         {% include '_game.html' %}
     {% endfor %}
     <nav aria-label="...">
         <ul class="pager">
-            <li class="previous{% if not prev_url %} disabled{% endif %}">
-                <a href="{{ prev_url or '#' }}">
+            <li class="previous{% if not games_prev_url %} disabled{% endif %}">
+                <a href="{{ games_prev_url or '#' }}">
                     <span aria-hidden="true">&larr;</span> Newer games
                 </a>
             </li>
-            <li class="next{% if not next_url %} disabled{% endif %}">
-                <a href="{{ next_url or '#' }}">
+            <li class="next{% if not games_next_url %} disabled{% endif %}">
+                <a href="{{ games_next_url or '#' }}">
                     Older games <span aria-hidden="true">&rarr;</span>
                 </a>
             </li>

@@ -1,4 +1,4 @@
-2022-02-11 07:04:50,719 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+2022-02-11 10:25:29,368 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,30 +10,36 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
-    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
-    items = self.limit(per_page).offset((page - 1) * per_page).all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
-    return self._iter().all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
-    return self._allrows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
-    rows = self._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
-    return self._real_result._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
-    return list(self.iterator)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
-    fetch = cursor._raw_all_rows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
-    return [make_row(row) for row in rows]
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
-    return [make_row(row) for row in rows]
-ValueError: Couldn't parse datetime string: '2022-01-01'
-2022-02-11 07:08:26,847 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:10:13,864 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:11:57,935 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+  File "/home/jake/ShotStar/app/main/routes.py", line 82, in user
+    return render_template('user.html', user=user, games=games.items, next_url=next_url, prev_url=prev_url, form=form)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 148, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1068, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 997, in get_template
+    return self._load_template(name, globals)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 958, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 757, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/user.html", line 18, in template
+    {% for game, scored_game in zip(games, scored_games %}
+jinja2.exceptions.TemplateSyntaxError: unexpected '}', expected ')'
+2022-02-11 10:26:02,341 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 10:26:04,762 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: scored__game.score
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -45,61 +51,65 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
-    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
-    items = self.limit(per_page).offset((page - 1) * per_page).all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
-    return self._iter().all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
-    return self._allrows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
-    rows = self._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
-    return self._real_result._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
-    return list(self.iterator)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
-    fetch = cursor._raw_all_rows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
-    return [make_row(row) for row in rows]
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
-    return [make_row(row) for row in rows]
-ValueError: Couldn't parse datetime string: '2022-01-01'
-2022-02-11 07:14:00,588 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:20:04,782 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:20:47,034 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
-Traceback (most recent call last):
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
-    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
-    items = self.limit(per_page).offset((page - 1) * per_page).all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
-    return self._iter().all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
-    return self._allrows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
-    rows = self._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
-    return self._real_result._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
-    return list(self.iterator)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
-    fetch = cursor._raw_all_rows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
-    return [make_row(row) for row in rows]
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
-    return [make_row(row) for row in rows]
-ValueError: Couldn't parse datetime string: '2022-01-01'
-2022-02-11 07:21:44,805 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:23:51,363 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+  File "/home/jake/ShotStar/app/main/routes.py", line 82, in user
+    return render_template('user.html', user=user, games=games.items, next_url=next_url, prev_url=prev_url, form=form)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jake/ShotStar/app/templates/base.html", line 50, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/home/jake/ShotStar/app/templates/user.html", line 11, in block 'app_content'
+    <p>{{ user.games_played.count() + user.scored_games_played.count() }} games played!</p>
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/dynamic.py", line 373, in count
+    return self._generate(sess).count()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3145, in count
+    return self._from_self(col).enable_eagerloads(False).scalar()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2879, in scalar
+    ret = self.one()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2856, in one
+    return self._iter().one()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2894, in _iter
+    result = self.session.execute(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1692, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1481, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1845, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2026, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1802, in _execute_context
+    self.dialect.do_execute(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: scored__game.score
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT scored__game.id AS scored__game_id, scored__game.date_played AS scored__game_date_played, scored__game.number_of_players AS scored__game_number_of_players, scored__game.starting_position AS scored__game_starting_position, scored__game.auto_or_manual AS scored__game_auto_or_manual, scored__game.file_name AS scored__game_file_name, scored__game.timestamp AS scored__game_timestamp, scored__game.score AS scored__game_score, scored__game.user_id AS scored__game_user_id 
+FROM scored__game 
+WHERE ? = scored__game.user_id) AS anon_1]
+[parameters: (1,)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-11 10:30:52,545 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]

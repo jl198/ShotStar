@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<h1>Score a new game!</h1>
+{% if form %}
+<form action="" method="post" class="form-inline" role="form">
+    {{ form.csrf_token() }}
+    <d1>
+        <h4>{{ form.date_played.label }}</h4>{{ wtf.form_field(form.date_played, class='form-control') }}
+        <h4>{{ form.number_of_players.label }}</h4>{{ wtf.form_field(form.number_of_players, class='form-control') }}
+        <h4>{{ form.starting_position.label }}</h4>{{ wtf.form_field(form.starting_position, class='form-control') }}
+        <h4>{{ form.other_positions.label }}</h4>{{ wtf.form_field(form.other_positions, class='form-control', placeholder='') }}
+        <h4>{{ form.auto_or_manual.label }}</h4>{{ wtf.form_field(form.auto_or_manual, class='form-control') }}
+        <h4>{{ form.file_name.label }}</h4>{{ wtf.form_field(form.file_name, class='form-control') }}
+    </d1>
+    <p><input type=submit class="btn btn-warning btn-block"></p>
+</form>
+{% endif %}
+<br><br>
+{% endblock %}

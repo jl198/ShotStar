@@ -1,6 +1,7 @@
 from flask import request
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, DateTimeField, IntegerField, DateField
+from wtforms import StringField, SubmitField, TextAreaField, DateTimeField, IntegerField, DateField, RadioField, \
+    SelectField, FileField, SelectMultipleField
 from wtforms.validators import ValidationError, DataRequired, Length
 from app.models import User
 
@@ -34,3 +35,15 @@ class GameForm(FlaskForm):
     #     entered_date = date_played.data
     #     if entered_date is not None:
     #         raise ValidationError(f'Incorrect Date Format. Entered: {entered_date}')
+
+
+class ScoreGameForm(FlaskForm):
+    date_played = DateField(validators=[DataRequired()])
+    number_of_players = RadioField('How many players?', choices=[1, 2, 3, 4, 5], validators=[DataRequired()])
+    starting_position = RadioField('Which station will you start at?', choices=[1, 2, 3, 4, 5], coerce=IntegerField,
+                                   validators=[DataRequired()])
+    other_positions = SelectMultipleField('What other stations are occupied?', choices=[('1',1), ('2', 2), ('3', 3), ('4', 4), ('5', 5)],
+                                          coerce=IntegerField, validators=[])
+    auto_or_manual = RadioField('Auto Score or Manual Score?', choices=['Auto', 'Manual'], validators=[DataRequired()])
+    file_name = FileField()
+    submit = SubmitField('Submit')

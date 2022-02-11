@@ -1,4 +1,4 @@
-2022-02-11 07:32:05,247 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+2022-02-11 10:50:19,259 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,30 +10,43 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
-    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
-    items = self.limit(per_page).offset((page - 1) * per_page).all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
-    return self._iter().all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
-    return self._allrows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
-    rows = self._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
-    return self._real_result._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
-    return list(self.iterator)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
-    fetch = cursor._raw_all_rows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
-    return [make_row(row) for row in rows]
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
-    return [make_row(row) for row in rows]
-ValueError: Couldn't parse datetime string: '2022-01-01'
-2022-02-11 07:32:18,448 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:33:07,864 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:33:10,315 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+  File "/home/jake/ShotStar/app/main/routes.py", line 88, in user
+    return render_template('user.html', user=user, games=games.items, scored_games=scored_games.items,
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jake/ShotStar/app/templates/base.html", line 50, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/home/jake/ShotStar/app/templates/user.html", line 19, in block 'app_content'
+    {% include '_scored_game.html' %}
+  File "/home/jake/ShotStar/app/templates/_scored_game.html", line 4, in top-level template code
+    <a href="{{ url_for('main.scored_game', username=scored_game.owner.username) }}">
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2315, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.scored_game' with values ['username']. Did you mean 'main.score_game' instead?
+2022-02-11 11:03:26,298 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 11:03:30,967 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -45,29 +58,41 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 42, in explore
-    games = Game.query.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 534, in paginate
-    items = self.limit(per_page).offset((page - 1) * per_page).all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
-    return self._iter().all()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1361, in all
-    return self._allrows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 400, in _allrows
-    rows = self._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1274, in _fetchall_impl
-    return self._real_result._fetchall_impl()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 1686, in _fetchall_impl
-    return list(self.iterator)
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 147, in chunks
-    fetch = cursor._raw_all_rows()
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in _raw_all_rows
-    return [make_row(row) for row in rows]
-  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/sqlalchemy/engine/result.py", line 392, in <listcomp>
-    return [make_row(row) for row in rows]
-ValueError: Couldn't parse datetime string: '2022-01-01'
-2022-02-11 07:34:50,977 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:38:37,797 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:38:48,105 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:38:51,723 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
-2022-02-11 07:40:13,159 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+  File "/home/jake/ShotStar/app/main/routes.py", line 95, in user
+    return render_template('user.html', user=user, games=games.items, scored_games=scored_games.items,
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jake/ShotStar/app/templates/base.html", line 50, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/home/jake/ShotStar/app/templates/user.html", line 19, in block 'app_content'
+    {% include '_scored_game.html' %}
+  File "/home/jake/ShotStar/app/templates/_scored_game.html", line 4, in top-level template code
+    <a href="{{ url_for('main.scored_game', username=scored_game.owner.username) }}">
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2315, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.scored_game' with values ['username']. Did you mean 'main.score_game' instead?
+2022-02-11 11:05:20,891 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 11:08:55,264 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 11:11:13,350 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]

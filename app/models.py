@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     games_played = db.relationship('Game', backref='owner', lazy='dynamic')
+    scored_games_played = db.relationship('Scored_Game', backref='owner', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -60,3 +61,20 @@ class Game(db.Model):
 
     def __repr__(self):
         return '<Game {}>'.format(self.score)
+
+
+class Scored_Game(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_played = db.Column(db.Date)
+    number_of_players = db.Column(db.Integer)
+    starting_position = db.Column(db.Integer)
+    # other_positions = form.other_positions.data
+    auto_or_manual = db.Column(db.Boolean)
+    file_name = db.Column(db.String(120))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    score = db.Column(db.Integer, default=0)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return f'{self.id=}\t{self.date_played=}\t{self.number_of_players=}\t{self.starting_position=}\n' \
+               f'{self.auto_or_manual=}\t{self.file_name=}\t{self.timestamp=}\t{self.score}'

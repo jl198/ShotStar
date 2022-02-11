@@ -1,4 +1,4 @@
-2022-02-11 06:07:43,925 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+2022-02-11 09:42:55,129 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,12 +10,38 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 55, in user
-    games = user.games_played.order_by(Game.timestamp.desc()).paginate(page, current_app.config['GAMES_PER_PAGE'], False)
-AttributeError: type object 'Game' has no attribute 'timestamp'
-2022-02-11 06:09:31,825 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
-2022-02-11 06:10:05,863 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
-2022-02-11 06:10:15,860 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+  File "/home/jake/ShotStar/app/main/routes.py", line 46, in explore
+    return render_template('index.html', title='Explore',
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jake/ShotStar/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jake/ShotStar/app/templates/base.html", line 50, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/home/jake/ShotStar/app/templates/index.html", line 18, in block 'app_content'
+    {% include '_game.html' %}
+  File "/home/jake/ShotStar/app/templates/_game.html", line 5, in top-level template code
+    <img src="{{ game.owner.avatar(70) }}"/>
+  File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'avatar'
+2022-02-11 09:42:58,206 ERROR: Exception on /score_game [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -27,8 +53,8 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 59, in user
-    return render_template('user.html', user=user, games=games.items, next_url=next_url, prev_url=prev_url, form=form)
+  File "/home/jake/ShotStar/app/main/routes.py", line 70, in score_game
+    return render_template('score_game.html', title='Score Game', form=form)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 148, in render_template
     ctx.app.jinja_env.get_or_select_template(template_name_or_list),
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1068, in get_or_select_template
@@ -43,11 +69,11 @@ Traceback (most recent call last):
     self.handle_exception(source=source_hint)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/home/jake/ShotStar/app/templates/user.html", line 13, in template
-    <p>{{ '%(count)d games played', count=user.games_played.count() }}</p>
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
-2022-02-11 06:17:17,297 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:68]
-2022-02-11 06:17:20,777 ERROR: Exception on /user/jake [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
+  File "/home/jake/ShotStar/app/templates/score_game.html", line 19, in template
+    {% endif %}
+jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2022-02-11 09:44:28,603 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 09:44:37,270 ERROR: Exception on /explore [GET] [in /home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -59,8 +85,8 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/home/jake/ShotStar/app/main/routes.py", line 59, in user
-    return render_template('user.html', user=user, games=games.items, next_url=next_url, prev_url=prev_url, form=form)
+  File "/home/jake/ShotStar/app/main/routes.py", line 46, in explore
+    return render_template('index.html', title='Explore',
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
     return _render(
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
@@ -69,8 +95,8 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/home/jake/ShotStar/app/templates/user.html", line 1, in top-level template code
-    {% extends "base.html" %}
+  File "/home/jake/ShotStar/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
   File "/home/jake/ShotStar/app/templates/base.html", line 1, in top-level template code
     {% extends 'bootstrap/base.html' %}
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
@@ -81,11 +107,14 @@ Traceback (most recent call last):
     {% block body -%}
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
     {% block content -%}
-  File "/home/jake/ShotStar/app/templates/base.html", line 48, in block 'content'
+  File "/home/jake/ShotStar/app/templates/base.html", line 50, in block 'content'
     {% block app_content %}{% endblock %}
-  File "/home/jake/ShotStar/app/templates/user.html", line 10, in block 'app_content'
-    {% if user.last_seen %}<p>Last seen on: {{ moment(user.last_seen).format('LLL') }}</p>{% endif %}
+  File "/home/jake/ShotStar/app/templates/index.html", line 18, in block 'app_content'
+    {% include '_game.html' %}
+  File "/home/jake/ShotStar/app/templates/_game.html", line 5, in top-level template code
+    <img src="{{ game.owner.avatar(70) }}"/>
   File "/home/jake/ShotStar/venv/lib/python3.8/site-packages/jinja2/utils.py", line 84, in from_obj
     if hasattr(obj, "jinja_pass_arg"):
-jinja2.exceptions.UndefinedError: 'moment' is undefined
-2022-02-11 06:19:02,630 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:69]
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'avatar'
+2022-02-11 09:51:35,858 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
+2022-02-11 09:52:31,038 INFO: ShotStar startup [in /home/jake/ShotStar/app/__init__.py:71]
